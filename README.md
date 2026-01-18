@@ -16,6 +16,8 @@ Students frequently face challenges in managing heavy academic workloads, mainta
 ### Solution
 The AI Study Assistant is a sophisticated, intelligent platform engineered to support students throughout their learning journey. Students can create accounts, input their courses, deadlines, topics, and preferred study methods. The system will generate tailored study plans, reminders, and revision schedules. Additionally, students can ask questions, receive simplified explanations, generate practice questions, and access summaries of complex topics through AI-powered assistance.
 
+Additionally, the AI Study Assistant will streamline student workflows by converting unstructured information into organized tasks. For instance, students can paste lists from text messages, emails, or class announcements, and the system will automatically transform this data into a structured checklist or study plan. This feature significantly reduces the effort required for manual organization, enabling students to quickly convert scattered information into actionable tasks.
+
 For productivity and progress tracking: The platform will analyze study patterns and performance metrics to deliver actionable feedback, recommend improvements, and dynamically adjust study plans. This delivers a customized learning experience that keeps students organized, motivated, and on course for academic excellence.
 
 By integrating planning, tutoring, and progress monitoring into a single system, the AI Study Assistant offers students an efficient, intelligent, and supportive learning environment.
