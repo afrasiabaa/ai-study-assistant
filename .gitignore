@@ -1,0 +1,9 @@
+# Node.js dependencies
+node_modules/
+
+# Environment files (API keys, secrets)
+.env
+
+# Build / output folders
+dist/
+build/
