@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <style>
+    body 
+    {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #8b90b9, #452bdb);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .register-container 
+    {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input 
+    {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button 
+    {
+      width: 95%;
+      padding: 10px;
+      margin-top: 15px;
+      background: #629ffc;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover 
+    {
+      background: #2ae478;
+    }
+
+    .back-btn 
+    {
+      background: #ccc;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+<div class="register-container">
+  <h2>Register</h2>
+
+  <input type="text" id="newUsername" placeholder="Username">
+  <input type="password" id="newPassword" placeholder="Password">
+
+  <button onclick="register()">Create Account</button>
+  <button class="back-btn" onclick="goBack()">Back to Login</button>
+</div>
+
+<script>
+  function goBack() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
