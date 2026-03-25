@@ -13,13 +13,16 @@ module.exports = async (req, res) => {
     const email = null;
 
     // Find user
-    const user = users.find((u) => u.username === username);
+    const user = await (process.env.MONGO_URL
+      ? users.findOne({ username })
+      : users.find((u) => u.username === username));
+
     if (!user) {
       return res.status(400).json(ErrorResponse(400, "User does not exist"));
     }
 
     // Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.passwordHash);
     if (!isMatch) {
       return res
         .status(400)
