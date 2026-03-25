@@ -7,14 +7,13 @@
     body 
     {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #8b90b9, #452bdb);
+      background: linear-gradient(135deg, #1E1E1E, rgb(133, 133, 133));
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       margin: 0;
     }
-
     .register-container 
     {
       background: white;
@@ -26,7 +25,6 @@
       flex-direction: column;
       align-items: center;
     }
-
     input 
     {
       width: 90%;
@@ -51,7 +49,7 @@
 
     button:hover 
     {
-      background: #2ae478;
+      background: #5b82ee;
     }
 
     .back-btn 
@@ -76,7 +74,41 @@
 <script>
   function goBack() {
   window.location.href = "index.html";
-}
+  }
+
+  async function register() {
+  const username = document.getElementById("newUsername").value.trim();
+  const password = document.getElementById("newPassword").value.trim();
+
+  // Check if username or password is empty
+  if (!username || !password) {
+    alert("Username and password cannot be blank!");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Registration failed!");
+    } else {
+      alert(`Registered successfully!\nYour token: ${data.token}`);
+      localStorage.setItem("authToken", data.token);
+      window.location.href = "index.html";
+    }
+    } catch (err) {
+      console.error(err);
+      alert("Error connecting to the server.");
+    }
+  }
 </script>
 
 </body>
