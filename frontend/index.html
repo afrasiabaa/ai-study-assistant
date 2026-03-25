@@ -1,45 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Login Page</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login Page</title>
     <style>
-      body 
-      {
+      body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(30deg, #1E1E1E, rgb(133, 133, 133));
+        background: linear-gradient(30deg, #1e1e1e, rgb(133, 133, 133));
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0;
-      }      
-      .login-container 
-      {
+      }
+      .login-container {
         background: white;
         padding: 30px;
         border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         width: 300px;
         display: flex;
         flex-direction: column;
         align-items: center;
-      }      
-      h2 
-      {
+      }
+      h2 {
         text-align: center;
         margin-bottom: 20px;
-      }    
-      input 
-      {
+      }
+      input {
         width: 90%;
         padding: 10px;
         margin: 8px 0;
         border-radius: 5px;
         border: 1px solid #ccc;
-      }    
-      button 
-      {
+      }
+      button {
         width: 95%;
         padding: 10px;
         margin-top: 15px;
@@ -49,60 +44,63 @@
         font-size: 16px;
         border-radius: 5px;
         cursor: pointer;
-      }    
-      button:hover 
-      {
+      }
+      button:hover {
         background: #00c6ee;
-      }    
-      .error 
-      {
+      }
+      .error {
         color: red;
         font-size: 14px;
         display: none;
       }
     </style>
-</head>
+  </head>
 
-<body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Enter your username">
-    <input type="password" id="password" placeholder="Enter your password">
-    <button onclick="login()">Login</button>
-      <button onclick="goToRegister()" style="margin-top:10px; background:#ccc; color:black;">
-    Register
-    </button>
-    <p class="error" id="errorMsg">Invalid login credentials</p>
-  </div>
-</body>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Enter your username" />
+      <input type="password" id="password" placeholder="Enter your password" />
+      <button onclick="login()">Login</button>
+      <button
+        onclick="goToRegister()"
+        style="margin-top: 10px; background: #ccc; color: black"
+      >
+        Register
+      </button>
+      <p class="error" id="errorMsg">Invalid login credentials</p>
+    </div>
+  </body>
 
-<script>
-async function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+  <script>
+    async function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:3000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ username, password })
-  });
+      const res = await fetch(
+        "https://afrasiabaa-ai-study-assistant.vercel.app/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        },
+      );
 
-  const data = await res.json();
+      const data = await res.json();
 
-  if (!res.ok) {
-    document.getElementById("errorMsg").style.display = "block";
-  } else {
-    localStorage.setItem("token", data.token);
+      if (!res.ok) {
+        document.getElementById("errorMsg").style.display = "block";
+      } else {
+        localStorage.setItem("token", data.token);
 
-    window.location.href = "main.html";
-  }
-}
+        window.location.href = "main.html";
+      }
+    }
 
-function goToRegister() {
-  window.location.href = "register.html";
-}
-</script>
-
+    function goToRegister() {
+      window.location.href = "register.html";
+    }
+  </script>
 </html>

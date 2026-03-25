@@ -1,115 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Register</title>
-  <style>
-    body 
-    {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1E1E1E, rgb(133, 133, 133));
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
-    .register-container 
-    {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    input 
-    {
-      width: 90%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1e1e1e, rgb(133, 133, 133));
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+      .register-container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
 
-    button 
-    {
-      width: 95%;
-      padding: 10px;
-      margin-top: 15px;
-      background: #629ffc;
-      border: none;
-      color: white;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+      button {
+        width: 95%;
+        padding: 10px;
+        margin-top: 15px;
+        background: #629ffc;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-    button:hover 
-    {
-      background: #5b82ee;
-    }
+      button:hover {
+        background: #5b82ee;
+      }
 
-    .back-btn 
-    {
-      background: #ccc;
-      color: black;
-    }
-  </style>
-</head>
-<body>
+      .back-btn {
+        background: #ccc;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Register</h2>
 
-<div class="register-container">
-  <h2>Register</h2>
+      <input type="text" id="newUsername" placeholder="Username" />
+      <input type="password" id="newPassword" placeholder="Password" />
 
-  <input type="text" id="newUsername" placeholder="Username">
-  <input type="password" id="newPassword" placeholder="Password">
+      <button onclick="register()">Create Account</button>
+      <button class="back-btn" onclick="goBack()">Back to Login</button>
+    </div>
 
-  <button onclick="register()">Create Account</button>
-  <button class="back-btn" onclick="goBack()">Back to Login</button>
-</div>
+    <script>
+      function goBack() {
+        window.location.href = "index.html";
+      }
 
-<script>
-  function goBack() {
-  window.location.href = "index.html";
-  }
+      async function register() {
+        const username = document.getElementById("newUsername").value.trim();
+        const password = document.getElementById("newPassword").value.trim();
 
-  async function register() {
-  const username = document.getElementById("newUsername").value.trim();
-  const password = document.getElementById("newPassword").value.trim();
+        // Check if username or password is empty
+        if (!username || !password) {
+          alert("Username and password cannot be blank!");
+          return;
+        }
 
-  // Check if username or password is empty
-  if (!username || !password) {
-    alert("Username and password cannot be blank!");
-    return;
-  }
+        try {
+          const res = await fetch(
+            "https://afrasiabaa-ai-study-assistant.vercel.app/api/auth/register",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
+            },
+          );
 
-  try {
-    const res = await fetch("http://localhost:3000/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ username, password })
-    });
+          const data = await res.json();
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.message || "Registration failed!");
-    } else {
-      alert(`Registered successfully!\nYour token: ${data.token}`);
-      localStorage.setItem("authToken", data.token);
-      window.location.href = "index.html";
-    }
-    } catch (err) {
-      console.error(err);
-      alert("Error connecting to the server.");
-    }
-  }
-</script>
-
-</body>
+          if (!res.ok) {
+            alert(data.message || "Registration failed!");
+          } else {
+            alert(`Registered successfully!\nYour token: ${data.token}`);
+            localStorage.setItem("authToken", data.token);
+            window.location.href = "index.html";
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Error connecting to the server.");
+        }
+      }
+    </script>
+  </body>
 </html>
