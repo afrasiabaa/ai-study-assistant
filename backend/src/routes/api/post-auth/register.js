@@ -1,7 +1,7 @@
 // ~/src/routes/api/post-auth/register.js
 
 const bcrypt = require("bcrypt");
-const users = require("../../../fake-db/index");
+const users = require("../../../db/index");
 const { SuccessResponse, ErrorResponse } = require("../../../response");
 
 module.exports = async (req, res) => {

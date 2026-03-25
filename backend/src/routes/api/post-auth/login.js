@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { ErrorResponse, SuccessResponse } = require("../../../response");
 
-const users = require("../../../fake-db/index");
+const users = require("../../../db/index");
 
 module.exports = async (req, res) => {
   try {

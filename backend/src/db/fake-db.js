@@ -1,4 +1,4 @@
-// ~/src/fake-db/index.js
+// ~/src/db/fake-db.js
 
 const users = [];
 
