@@ -3,6 +3,6 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/generate", require("./generate"));
+router.post("/generate", require("./generate"));
 
 module.exports = router;
