@@ -7,7 +7,7 @@
       body 
       {
         font-family: Arial, sans-serif;
-        background: linear-gradient(30deg, #4facfe, #00f2fe);
+        background: linear-gradient(30deg, #1E1E1E, rgb(133, 133, 133));
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -77,10 +77,32 @@
 </body>
 
 <script>
-  function goToRegister() 
-  {
-    window.location.href = "register.html";
+async function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username, password })
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    document.getElementById("errorMsg").style.display = "block";
+  } else {
+    localStorage.setItem("token", data.token);
+
+    window.location.href = "main.html";
   }
+}
+
+function goToRegister() {
+  window.location.href = "register.html";
+}
 </script>
 
 </html>
